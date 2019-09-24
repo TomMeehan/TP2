@@ -33,15 +33,15 @@ public class TicketMachineTest {
         @Test
         // S3 : on n'imprime pas le ticket si le montant inséré est insuffisant
         public void dontPrintIfBalanceTooLow() {
-                machine.insertMoney(20);
-                assertEquals("Le ticket est imprimé malgré une balance insuffisante", false, machine.printTicket());
+                machine.insertMoney(PRICE-1);
+                assertFalse(machine.printTicket());
         }
         
         @Test
         // S4 : on imprime le ticket si la balance est suffisante
         public void printIfEnoughBalance() {
-                machine.insertMoney(60);
-                assertEquals("Ticket n'est pas imprimé malgré une balance suffisante", true, machine.printTicket());
+                machine.insertMoney(PRICE);
+                assertTrue(machine.printTicket());
         }
         
         @Test
